@@ -1,0 +1,47 @@
+#!/bin/sh
+
+
+echo Content-type: text/html
+echo ""
+
+NAME=`echo "$QUERY_STRING" | grep -oE "(^|[?&])name=[^&]+" | sed "s/%20/ /g" | sed "s/+/ /g" | cut -f 2 -d "="`
+TITLE=`echo "$QUERY_STRING" | grep -oE "(^|[?&])title=[^&]+" | sed "s/%20/ /g" | sed "s/+/ /g" | sed "s/%([0-9A-F]{2})/pack(C,hex($1))/ieg" | cut -f 2 -d "="`
+
+if [ "$NAME" = "" ]
+then
+	nothing
+else
+	echo $NAME > name.key
+fi
+
+if [ "$NAME" = "" ]
+then
+	nothing
+else
+	echo $TITLE > title.key
+fi
+
+
+/bin/cat << EOM
+<html>
+<head>
+        <meta charset="utf-8">
+	<title>Bauchbinden editor</title>
+</head>
+<body>
+	<form action="/cgi-bin/edit.cgi" method="get">
+EOM
+
+read namekey < name.key
+read titlekey < title.key
+
+echo		"Name: <input type=\"text\" name=\"name\" value=\""$namekey"\"/><br/>"
+echo		"Untertitel: <input type=\"text\" name=\"title\" value=\""$titlekey"\"/><br/>"
+
+/bin/cat << EOM
+		<input type="submit" title="Submit" value="Ändern">
+
+	</form>
+</body>
+</html>
+EOM

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+
+
+
+#QUERY_STRING=$(echo $QUERY_STRING | sed -e's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g' | xargs echo -e)
+
+
+echo Content-type: text/html
+echo ""
+
+name=$(echo "$QUERY_STRING" | grep -oE "(^|[?&])name=[^&]+" | cut -f 2 -d "=" | sed -e's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g' | xargs echo -e | sed 's/+/ /g' )
+title=$(echo "$QUERY_STRING" | grep -oE "(^|[?&])title=[^&]+" | cut -f 2 -d "=" | sed -e's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g' | xargs echo -e | sed 's/+/ /g')
+
+if [ "$name" = "" ]
+then
+	nothing
+else
+	echo $name > name.key
+fi
+
+if [ "$title" = "" ]
+then
+	nothing
+else
+	echo $title > title.key
+fi
+
+
+/bin/cat << EOM
+<html>
+<head>
+        <meta charset="utf-8">
+	<title>Bauchbinden editor</title>
+</head>
+<body>
+	<form action="/cgi-bin/edit.cgi" method="get">
+EOM
+
+read namekey < name.key
+read titlekey < title.key
+
+echo		"Name: <input type=\"text\" name=\"name\" value=\""$namekey"\"/><br/>"
+echo		"Untertitel: <input type=\"text\" name=\"title\" value=\""$titlekey"\"/><br/>"
+
+/bin/cat << EOM
+		<input type="submit" title="Submit" value="Ändern">
+
+	</form>
+</body>
+</html>
+EOM
+
+

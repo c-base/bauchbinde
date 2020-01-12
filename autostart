@@ -1,0 +1,9 @@
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+#@xscreensaver -no-splash
+
+@xset s off
+@xset -dpms
+@xset s noblank
+@midori -e Fullscreen -a http://localhost/cgi-bin/showip.cgi
+# Copy this file to /etc/xdg/lxsession/LXDE/autostart

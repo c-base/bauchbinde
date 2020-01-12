@@ -1,0 +1,57 @@
+<html>
+<head>
+        <meta charset="utf-8">
+	<title>Bauchbinden viewer</title>
+	<script src="/jquery-1.5.1.min.js"></script>
+<!--	<meta http-equiv="refresh" content="25; URL=http://localhost/display.html"> -->
+	<script type="text/javascript">
+		var auto_refresh = setInterval(
+		function ()
+		{
+			$('#name').load('/cgi-bin/name.cgi').fadeIn("slow");
+			$('#title').load('/cgi-bin/title.cgi').fadeIn("slow");
+		},1000); // refresh every x milliseconds
+	</script>
+	<style type="text/css">
+
+	@font-face
+	{
+		font-family: "DIN-Bold";
+		src: url("/DINBD__.TTF");
+	}
+
+	@font-face
+	{
+		font-family: "DIN-Medium";
+		src: url("/DINMD__.TTF");
+	}
+
+	body { 
+		background: #00ff00; 
+		font-family: 'DIN-Bold', sans-serif;
+		color: #FFFFFF;
+	}
+	#name {
+		position: absolute;
+		top: 905px;
+		font-size: 64px;
+		margin-left: 60px;
+		text-shadow: 2px 2px 2px #000;
+	}
+	#title {
+		font-family: 'DIN-Medium', sans-serif;
+		position: absolute;
+		top: 980px;
+		font-size: 42px;
+		margin-left: 60px;
+		text-shadow: 2px 2px 2px #000;
+	}
+	</style>
+</head>
+<body>
+	<div id="name">
+	</div>
+	<div id="title">
+	</div>
+</body>
+</html>
