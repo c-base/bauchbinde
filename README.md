@@ -2,6 +2,8 @@
 
 Bauchbinden-Generator für den Raspberry-Pi
 
+![](./docs/overview.png)
+
 ## Installation
 
 - Die Dateien aus `cgi-bin/` nach `/usr/lib/cgi-bin/` kopieren und .cgi-Dateien ausführbar machen.
@@ -39,7 +41,7 @@ Editieren der Texte:
 - Key auf Chroma einstellen
 - Key-Quelle auf den HDMI-Eingang einstellen, an dem der Bauchbinden-Generator angeschlossen ist
 
-![](./docs/sw1.png)
+![](./docs/sw2.png)
 
 Upstream-Key-Settings für Chroma-Key
 
