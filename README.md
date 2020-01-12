@@ -29,12 +29,19 @@ Editieren der Texte:
 
 - http://{IP-Adresse des PI}/cgi-bin/edit.cgi
 
-In der ATEM Software-Control:
+## In der ATEM Software-Control
+
+- Mischer-Ansicht auswählen (die Ansicht mit dem dicken Regler)
+- Rechts Paletten auswählen, Upstream-Key 1 auswählen
+
+![](./docs/sw1.png)
 
 - Key auf Chroma einstellen
+- Key-Quelle auf den HDMI-Eingang einstellen, an dem der Bauchbinden-Generator angeschlossen ist
 
+![](./docs/sw1.png)
 
-Upstream Key Settings für ATEM-Software:
+Upstream-Key-Settings für Chroma-Key
 
 - Mode: Chroma
 - Mask: top: 9, bottom: -9, left: -16, right: 15.98
